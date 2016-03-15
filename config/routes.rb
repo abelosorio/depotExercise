@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'store/index'
+
   resources :products
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -6,6 +8,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+
+  # The "as: 'store'" tells Rails to create a store_path accessor method. Just
+  # like we did with say_goodbye_path on page 26.
+  root 'store#index', as: 'store'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
