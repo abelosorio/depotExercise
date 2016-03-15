@@ -11,7 +11,7 @@ class ProductsControllerTest < ActionController::TestCase
     }
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:products)
@@ -51,5 +51,17 @@ class ProductsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to products_path
+  end
+
+  test 'should have 3 actions' do
+    get :index
+    # assert_select returns the list of the elements with the class
+    # .list_actions, then for each element we check that them have 3 a
+    # elements.
+    assert_select '.list_actions' do |elements|
+      elements.each do |element|
+        assert_select element, 'a', 3
+      end
+    end
   end
 end
