@@ -12,8 +12,15 @@
         <%= sanitize(product.description) %>
         <div class="price_line">
           <span class="price"><%= number_to_currency(product.price) %></span>
+          <% # We can use the whole product object because Rails extract the
+             # product.id from product object %>
+          <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
         </div>
       </div>
     <% end %>
   <% end %>
+<% end %>
+
+<% if @total_user_access > 5 %>
+<p>We count <%= pluralize(@total_user_access, "access") %> to Store. Thanks budy! :)</p>
 <% end %>
